@@ -1,0 +1,26 @@
+{
+  "name": "@fjbarrena/dtrack-cli",
+  "version": "1.0.2",
+  "description": "A small CLI to upload BOM files to OWASP Dependency Track (https://dependencytrack.org/) tool using CI/CD pipelines",
+  "main": "index.js",
+  "scripts": {
+    "publish": "npm publish"
+  },
+  "keywords": [
+    "cli",
+    "dependency track",
+    "devsecops"
+  ],
+  "bin": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Francisco Javier Barrena <@DogDeveloper>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chalk": "^3.0.0",
+    "figlet": "^1.2.4",
+    "request": "^2.88.2"
+  }
+}
