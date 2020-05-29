@@ -53,7 +53,7 @@ dependency-check:
     # Assuming your code is in root, if not just make a cd
     - npm install
     - cyclonedx-bom -o bom.xml
-    - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path ${DTRACK_API_KEY} --api-key ${KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
+    - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path bom.xml --api-key ${DTRACK_API_KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
   allow_failure: true
   only:
     - master
