@@ -53,13 +53,13 @@ dependency-check:
     # Assuming your code is in root, if not just make a cd
     - npm install
     - cyclonedx-bom -o bom.xml
-    - dtrack-cli --server ${SERVER} --bom-path bom.xml --api-key ${KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
+    - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path ${DTRACK_API_KEY} --api-key ${KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
   allow_failure: true
   only:
     - master
 ```
 
-### pypi based projects
+### PyPi based projects
 
 ```yaml
 stages:
@@ -77,9 +77,31 @@ dependency-check:
     - node -v
     - pip install cyclonedx-bom
   script:
-    - cd subsystems/designer
+    # Assuming your code is in root, if not just make a cd
     - cyclonedx-py -i requirements.txt -o bom.xml
     - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path bom.xml --api-key ${DTRACK_API_KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
+  allow_failure: true
+  only:
+    - master
+```
+
+### Maven based projects
+
+```yaml
+dependency-check-java:
+  stage: sonar
+  image: maven:3.6-openjdk-11
+  before_script:
+    - apt update -y
+    - apt install curl gnupg -y
+    - curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+    - apt install nodejs -y
+    - npm install -g @fjbarrena/dtrack-cli
+  script:
+    # Assuming your code is in root, if not just make a cd
+    - mvn clean install
+    - mvn org.cyclonedx:cyclonedx-maven-plugin:makeBom
+    - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path target/bom.xml --api-key ${DTRACK_API_KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
   allow_failure: true
   only:
     - master
