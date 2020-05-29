@@ -102,6 +102,3 @@ console.log(
 
 const myArgs = process.argv.slice(2);
 checkFlagsAndRun(myArgs);
-
-
-// run('https://zdmp-dtrack.iti.es/', 'bom.xml', 'XYugbzOoWp8TOLrMytPoqWtlhR2mCXra', 'Another Test', 'latest', true);
