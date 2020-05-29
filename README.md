@@ -58,3 +58,29 @@ dependency-check:
   only:
     - master
 ```
+
+### pypi based projects
+
+```yaml
+stages:
+  - dtrack
+  
+dependency-check:
+  stage: dtrack
+  image: python:3.6
+  before_script:
+    - apt update -y
+    - apt install curl gnupg -y
+    - curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+    - apt install nodejs -y
+    - npm install -g @fjbarrena/dtrack-cli
+    - node -v
+    - pip install cyclonedx-bom
+  script:
+    - cd subsystems/designer
+    - cyclonedx-py -i requirements.txt -o bom.xml
+    - dtrack-cli --server ${DTRACK_HOST_URL} --bom-path bom.xml --api-key ${DTRACK_API_KEY} --project-name ${NAME} --project-version ${VERSION} --auto-create true
+  allow_failure: true
+  only:
+    - master
+```
