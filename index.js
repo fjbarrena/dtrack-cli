@@ -5,8 +5,6 @@ const fs = require('fs');
 const figlet = require('figlet');
 const axios = require('axios');
 
-const apiKey = 'XYugbzOoWp8TOLrMytPoqWtlhR2mCXra';
-
 const PROJECT_AUTO_CREATE = '--auto-create';
 const PROJECT_NAME_FLAG = '--project-name';
 const PROJECT_VERSION_FLAG = '--project-version';
@@ -79,11 +77,25 @@ const run = async (baseUrl, bomPath, apiKey, projectName, projectVersion, autoCr
     }
 
     try {
+        let finalURL = baseUrl + '/api/v1/bom';
+
+        if (baseUrl.slice(-1) === '/') {
+            finalURL = baseUrl + 'api/v1/bom';
+        }
+        else {
+            finalURL = baseUrl + '/api/v1/bom';
+        }
+
+        console.log(chalk.whiteBright(`PUT ${finalURL}`));
+        console.log(chalk.whiteBright(JSON.stringify(data)));
+
         await axios.put(baseUrl + '/api/v1/bom', data, headers);
+        
         console.log(chalk.whiteBright('Done!'));
     }
     catch(ex) {
         console.log(chalk.bgRed('Error uploading bom', ex));
+        console.log(chalk.bgRedBright(ex.stack));
         console.log(chalk.redBright('Review your settings ;)'))
     }
 };
