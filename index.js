@@ -87,9 +87,8 @@ const run = async (baseUrl, bomPath, apiKey, projectName, projectVersion, autoCr
         }
 
         console.log(chalk.whiteBright(`PUT ${finalURL}`));
-        console.log(chalk.whiteBright(JSON.stringify(data)));
-
-        await axios.put(baseUrl + '/api/v1/bom', data, headers);
+        
+        await axios.put(finalURL, data, headers);
         
         console.log(chalk.whiteBright('Done!'));
     }

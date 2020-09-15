@@ -1,6 +1,6 @@
 {
   "name": "@fjbarrena/dtrack-cli",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "A small CLI to upload BOM files to OWASP Dependency Track (https://dependencytrack.org/) tool using CI/CD pipelines",
   "main": "index.js",
   "scripts": {
