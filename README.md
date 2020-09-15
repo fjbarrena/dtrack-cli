@@ -106,3 +106,22 @@ dependency-check-java:
   only:
     - master
 ```
+
+## Dependency Track configuration example
+
+* Install Dependency Track in a server using the latest version and based in Docker. Using the instructions of the documentation of Dependency Track
+```
+https://docs.dependencytrack.org/getting-started/deploy-docker/
+```
+* If all it's right, you will be able to access to the following URL: http://localhost:8080 (change with the IP of your server)
+* Then, log in and go to the Teams section inside the administration. Edit the "Automation" Team with the following permissions
+
+<img width="1344" alt="Screenshot 2020-09-15 at 10 39 13" src="https://user-images.githubusercontent.com/1855013/93187232-dfebe300-f73f-11ea-896e-cde4fc69917e.png">
+
+* Make sure you have an API Key for the Automation Team, like the following (don't worry, this key is revoked ;))
+
+<img width="466" alt="Screenshot 2020-09-15 at 10 41 52" src="https://user-images.githubusercontent.com/1855013/93187442-1a558000-f740-11ea-8399-fe0039e2ed83.png">
+
+* Now, with the previous API Key, you will be able to use the dtrack-cli following the instructions provided, in my test using Gitlab CI/CD in a NestJS (NPM/NodeJS) project was as follows:
+
+<img width="1103" alt="Screenshot 2020-09-15 at 10 58 22" src="https://user-images.githubusercontent.com/1855013/93189459-73261800-f742-11ea-9168-0a6b79f4c457.png">
