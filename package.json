@@ -18,7 +18,7 @@
   "author": "Francisco Javier Barrena <@DogDeveloper>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chalk": "^3.0.0",
     "figlet": "^1.2.4",
     "request": "^2.88.2"
